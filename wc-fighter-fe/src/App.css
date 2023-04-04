@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   background-color: #282c34;
 }
 
@@ -12,23 +11,8 @@
 .Gate {
   background-color: white;
   width: 100px;
+  height: 100px;
 }
-
-.Gate-Upper-Left {
-  border: 5px red;
-}
-
-.Gate-Upper-Right {
-  border: 5px red;
-}
-
-.Gate-Middle-Left
-
-.Gate-Middle-Right
-
-.Gate-Lower-Left
-
-.Gate-Lower-Right
 
 .Selected {
   background-color: blue;

@@ -13,39 +13,58 @@ async function SampleProgram() {
   let level = document.getElementById("level").value
   
   let levels = {
-    1: {
+    0: {
       "moves": 10,
       "speed": 3000
     },
-    2: {
-      "moves": 11,
+    1: {
+      "moves": 20,
       "speed": 3000
     },
+    2: {
+      "moves": 20,
+      "speed": 2700
+    },
     3: {
-      "moves": 12,
+      "moves": 20,
       "speed": 2500
     },
     4: {
-      "moves": 13,
-      "speed": 2000
+      "moves": 30,
+      "speed": 2500
     },
     5: {
-      "moves": 15,
+      "moves": 30,
+      "speed": 2300
+    },
+    6: {
+      "moves": 30,
+      "speed": 2000
+    },
+    7: {
+      "moves": 40,
+      "speed": 2000
+    },
+    8: {
+      "moves": 40,
+      "speed": 1500
+    },
+    9: {
+      "moves": 45,
       "speed": 1000
+    },
+    10: {
+      "moves": 50,
+      "speed": 500
     },
   }
 
-  async function CheckLevel(level) {
-    if (level > 5) {
-      alert("Level only goes as high as 5")
-    }
-    else {
-      moves = levels[level].moves
-      speed = levels[level].speed 
-    }
+  async function SetLevel(level) {
+    moves = levels[level].moves
+    speed = levels[level].speed 
   }
 
-  CheckLevel(level)
+  SetLevel(level)
 
   let gates = {
     0: document.getElementById('Gate-Upper-Left'),
@@ -55,29 +74,35 @@ async function SampleProgram() {
     4: document.getElementById('Gate-Lower-Left'),
     5: document.getElementById('Gate-Lower-Right')
   }
-  let sessionMoves = 10
-  // for (let i = 0; i < sessionMoves; i++) {
-  //   console.log('Start')
-  //   let gateNum = Math.floor(Math.random() * 6)
-  //   let gatePick = gates[gateNum].classList;
-  //   console.log('Gate picked', gatePick);
-  //   gatePick.add('Selected')
-  //   setTimeout(() => {
-  //     console.log('Gate modified', gatePick)
-  //     gatePick.remove('Selected')
-  //   }, 3000)
-  //   console.log('Gate reset', gatePick)
-  //   console.log('Program ended')
-  // }
+
+  // Keeps track of the gate previously picked, generated outside the for loop so it isn't recreated every instance
+  let prevPick = undefined
 
   for (let i = 0; i < moves; i++) {
+    console.log('Previous: ', prevPick)
+    // Assigns a new number to choose from the list of gates at random
     let gateNum = await Math.floor(Math.random() * 6)
-    let gatePick = await gates[gateNum].classList;
-    
-    gatePick.add('Selected');
+    // Assigns a gate's class list using the gate number
+    let gatePick = await gates[gateNum];
+    console.log('Gatepick: ', gatePick)
+
+    // is the previous pick defined yet? it should not be for the first round
+    if (prevPick == undefined) {
+      prevPick = gatePick
+    }
+    // Is the previous pick the current gate pick? 
+    else if (prevPick == gatePick) {
+      gateNum = await Math.floor(Math.random() * 6)
+      gatePick = await gates[gateNum];
+    }
+
+
+    await gatePick.classList.add('Selected');
 
     await new Promise((resolve, reject) => setTimeout(resolve, speed))
-    gatePick.remove('Selected')
+    
+    await gatePick.classList.remove('Selected')
+    prevPick = gatePick
   }
 
   return
@@ -88,7 +113,8 @@ function App() {
     <div className="App">
       {/* <input id="speed" type="number" name="speed" placeholder="speed"></input>
       <input id="moves" type="number" name="moves" placeholder="moves"></input> */}
-      <input id="level" type="number" name="level" placeholder="level"></input>
+      {/* <label for="level">{document.getElementById("level").value}</label> */}
+      <input id="level" type="range" name="level" min="0" max="10"></input>
       <button onClick={()=> SampleProgram()}>Run Test</button>
       <div className='Fighter-Box'>
         {/* Upper Gates */}
@@ -101,7 +127,8 @@ function App() {
         <div id='Gate-Lower-Left' className='Gate Gate-Upper-Left'>Lower Left</div>
         <div id='Gate-Lower-Right' className='Gate '>Lower Right</div>  
       </div>
-      <footer className='App-header'>
+      <footer>
+
       </footer>
     </div>
   );

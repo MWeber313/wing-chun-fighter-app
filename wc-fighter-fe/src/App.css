@@ -1,11 +1,15 @@
 .App {
   background-color: #282c34;
+  text-align: center;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
 .Fighter-Box {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: 100px 100px;
 }
 
 .Gate {

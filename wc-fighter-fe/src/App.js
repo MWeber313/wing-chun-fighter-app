@@ -22,29 +22,55 @@ function App () {
         }
     ]
 
+
+
     async function CircuitPunching() {
+        let moves = document.getElementById('moves').value
+        let speed = (document.getElementById('speed').value * 1000)
         // let gatePick = gates[Math.floor(Math.random() * gates.length)]
         // console.log(gatePick)
         // let divPick = document.getElementById(gatePick.name)
         // console.log(divPick)
 
         // Is this coherent and easy to read?
+        let prevPick = undefined
 
-        gates.forEach(item)
-        let divPick = document.getElementById(gates[Math.floor(Math.random() * gates.length)].name)
+        function gatePick() {
+            let divPick = document.getElementById(gates[Math.floor(Math.random() * gates.length)].name)
 
-        divPick.classList.add('Selected')
+            if (divPick == prevPick) {
+                gatePick()
+            }
+            else {
+                return divPick
+            }
+        }
 
-        await new Promise((resolve, reject) => {
-            setTimeout(resolve, 2000)
-        })
-        
-        divPick.classList.remove('Selected')
+        for (let i = 0; i < moves; i++) {
+
+            let divPick = gatePick()
+            
+            divPick.classList.add('Selected')
+    
+            await new Promise((resolve, reject) => {
+                setTimeout(resolve, speed)
+            })
+            
+            divPick.classList.remove('Selected')
+            prevPick = divPick
+        }
+
     }
 
     return (
         <div className="App">
-            <button onClick={CircuitPunching}>Run Program</button>
+            <div className="Setup-Box">
+                <label for="moves">Moves</label>
+                <input type="number" name="moves"></input>
+                <label for="speed">Speed</label>
+                <input type="number" name="speed"></input>
+                <button onClick={CircuitPunching}>Run Program</button>
+            </div>
             <div className="Fighter-Box">
                 {gates.map((item) => 
                 <div key={item.index} id={item.name} className="Gate">{item.name}</div>

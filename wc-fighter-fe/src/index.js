@@ -1,15 +1,27 @@
+// These are the basic imports from react
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+// These are the basic imports from react-router-dom
+import {createBrowserRouter, RouterProvider} from "react-router-dom";
+
+// These are the imports for my custom routes
 import Root from './routes/root';
+import ErrorPage from './error-page';
+import Contact from './routes/contacts';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />
+    element: <Root />,
+    errorElement: <ErrorPage />
+  },
+  {
+    path: "contacts/:contactId",
+    element: <Contact />
   }
 ])
 

@@ -1,8 +1,8 @@
 // These are the basic imports from react
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
+import './styles/index.css';
+import App from './Legacy-App-2';
 import reportWebVitals from './reportWebVitals';
 
 // These are the basic imports from react-router-dom
@@ -28,7 +28,6 @@ const router = createBrowserRouter([
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
     <RouterProvider router={router} />
   </React.StrictMode>
 );

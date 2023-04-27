@@ -1,6 +1,6 @@
 import '../styles/endurance.css'
 
-function App () {
+function Endurance () {
     let gates = [
         {
             name: "Upper-Left"
@@ -108,4 +108,4 @@ function App () {
     )
 }
 
-export default App;
+export default Endurance;

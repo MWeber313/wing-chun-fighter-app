@@ -2,7 +2,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './styles/index.css';
-import App from './Legacy-App-2';
 import reportWebVitals from './reportWebVitals';
 
 // These are the basic imports from react-router-dom
@@ -13,6 +12,10 @@ import Root from './routes/root';
 import ErrorPage from './error-page';
 import Contact from './routes/contacts';
 
+// These are the imports for my custom programs that have their own route
+import Endurance from './routes/endurance';
+import TargetChallenge from './routes/targeted';
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +25,14 @@ const router = createBrowserRouter([
   {
     path: "contacts/:contactId",
     element: <Contact />
+  },
+  {
+    path: "endurance",
+    element: <Endurance />
+  },
+  {
+    path: "targeted",
+    element: <TargetChallenge />
   }
 ])
 

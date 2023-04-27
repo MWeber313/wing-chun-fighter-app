@@ -36,6 +36,12 @@ function Root() {
                 <li>
                   <a href={`/contacts/2`}>Your Friend</a>
                 </li>
+                <li>
+                  <a href={`/endurance`}>Endurance</a>
+                </li>
+                <li>
+                  <a href={`/targeted`}>Target Challenge</a>
+                </li>
               </ul>
             </nav>
           </div>

@@ -4,7 +4,7 @@ import '../styles/index.css';
     
 export default function TargetChallenge() {
     // Use a hook for this
-    let currentMove = ''
+    let currentMove = 'Now waiting for moves...'
     let fighterMoves = 
     [
         {
@@ -140,9 +140,11 @@ export default function TargetChallenge() {
         <div id="targeted">
             <button onClick={() => DisplayTarget()}>Run Program</button>
             <div>{currentMove}</div>
-            {gates.map((item) => {
-                <div>{item.name}</div>
-            })}
+            <div>
+                {gates.map((item) => 
+                    <div>{item.name}</div>
+                )}
+            </div>
         </div>
     )
 }

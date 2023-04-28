@@ -109,7 +109,6 @@ async function DisplayTarget() {
     for (i = 0; i <= 10; i++) {
         // This selects a target to process
         let targetPick = fighterMoves[Math.floor(Math.random() * fighterMoves.length)]
-        console.log(targetPick)
         processedTarget = await ProcessTarget(targetPick)
 
     }

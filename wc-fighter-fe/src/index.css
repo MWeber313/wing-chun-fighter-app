@@ -46,3 +46,8 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+#navigation {
+  background-color: black;
+  color: white;
+}

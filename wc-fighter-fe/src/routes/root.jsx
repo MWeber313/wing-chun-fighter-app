@@ -4,7 +4,7 @@ import {Outlet, Link} from 'react-router-dom';
 function Root() {
     return (
         <>
-          <div id="sidebar">
+          <div id="navigation">
             <h1>Wing Chun App</h1>
             <nav>
               <ul>
@@ -17,7 +17,7 @@ function Root() {
               </ul>
             </nav>
           </div>
-          <div id="detail">
+          <div id="displayContent">
             <Outlet />
           </div>
         </>

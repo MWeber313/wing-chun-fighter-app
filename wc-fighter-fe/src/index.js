@@ -1,7 +1,8 @@
 // These are the basic imports from react
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './styles/index.css';
+// import './styles/index.css';
+import './index.css';
 import reportWebVitals from './reportWebVitals';
 
 // These are the basic imports from react-router-dom
@@ -20,20 +21,22 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
-    errorElement: <ErrorPage />
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "contacts/:contactId",
+        element: <Contact />
+      },
+      {
+        path: "/endurance",
+        element: <Endurance />
+      },
+      {
+        path: "/targeted",
+        element: <TargetChallenge />
+      }
+    ]
   },
-  {
-    path: "contacts/:contactId",
-    element: <Contact />
-  },
-  {
-    path: "endurance",
-    element: <Endurance />
-  },
-  {
-    path: "targeted",
-    element: <TargetChallenge />
-  }
 ])
 
 const root = ReactDOM.createRoot(document.getElementById('root'));

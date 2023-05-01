@@ -1,7 +1,5 @@
 import '../styles/index.css';
 
-
-    
 export default function TargetChallenge() {
     // Use a hook for this
     let currentMove = 'Now waiting for moves...'

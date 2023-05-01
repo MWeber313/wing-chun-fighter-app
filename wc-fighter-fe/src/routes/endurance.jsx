@@ -1,6 +1,7 @@
 import '../styles/endurance.css'
 
-function Endurance () {
+export default function Endurance () {
+    console.log('Endurance arrived at')
     let gates = [
         {
             name: "Upper-Left"
@@ -108,4 +109,3 @@ function Endurance () {
     )
 }
 
-export default Endurance;
